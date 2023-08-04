@@ -1,24 +1,21 @@
 import React from "react";
 import { useProducts } from "../Context/ProductProvider";
-import ProductCard from "../components/ProductCard";
 import Loading from "../components/Loading";
+import ProductCard from "../components/ProductCard";
 import Error from "../components/Error";
 
-const Cart = () => {
+const Wishlist = () => {
   const {
-    state: { cart, loading, error },
+    state: { wishlist, loading, error },
   } = useProducts();
-
   let content;
   if (loading) {
     content = <Loading />;
   }
   if (!loading) {
-    content = cart
-      .filter((product) => product.rating >= 4)
-      .map((product) => (
-        <ProductCard key={product._id} product={product}></ProductCard>
-      ));
+    content = wishlist.map((product) => (
+      <ProductCard key={product._id} product={product} />
+    ));
   }
   if (error) {
     content = <Error />;
@@ -30,4 +27,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default Wishlist;
