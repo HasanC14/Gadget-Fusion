@@ -1,5 +1,4 @@
-import React, { useReducer } from "react";
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { useReducer, createContext, useContext, useEffect } from "react";
 import {
   ProductReducer,
   initialState,
@@ -9,8 +8,6 @@ import { ActionType } from "../state/ProductState/ActionType";
 const PRODUCT_CONTEXT = createContext();
 
 const ProductProvider = ({ children }) => {
-  const [data, setdata] = useState([]);
-
   const [state, dispatch] = useReducer(ProductReducer, initialState);
   console.log(state);
 
@@ -30,7 +27,6 @@ const ProductProvider = ({ children }) => {
   );
 };
 export const useProducts = () => {
-  const context = useContext(PRODUCT_CONTEXT);
-  return context;
+  return useContext(PRODUCT_CONTEXT);
 };
 export default ProductProvider;
